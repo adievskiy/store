@@ -1,6 +1,8 @@
 class RegularStore(city: String) : Store(city) {
     private val phones = mutableListOf<Phone>()
     private val salesStatistics = mutableMapOf<Phone, Int>()
+    private val repairShop = RepairShop()
+
     override fun addPhone(phone: Phone) {
         phones.add(phone)
     }
@@ -15,9 +17,13 @@ class RegularStore(city: String) : Store(city) {
         }
     }
 
+    fun repairPhone(phone: Phone): String {
+        return repairShop.repairPhone(phone)
+    }
+
     override fun showStatistic() {
         println("Статистика продаж в магазине $city:")
-        salesStatistics.forEach{ (phone, count) ->
+        salesStatistics.forEach { (phone, count) ->
             println("Модель ${phone.model} продана $count раз")
         }
     }
